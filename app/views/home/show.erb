@@ -1,0 +1,12 @@
+
+  <%= @post.local %><br>
+  <%= @post.money %><br>
+  <%= @post.title %><br>
+  <%= @post.content %><br>
+  <%= @post.date %><br>
+  <%= @post.time.strftime("%I#{"시"} %M#{"분"} %p")%>
+  <%= @post.time2.strftime("%I#{"시"} %M#{"분"} %p")%><br>
+  <a href = "/edit/<%= @post.id %>">수정</a>
+  <a href = "/destroy/<%= @post.id %>">삭제</a><hr>
+
+<a href="/">메인페이지로</a>
