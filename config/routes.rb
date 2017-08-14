@@ -1,15 +1,13 @@
 Rails.application.routes.draw do
-  devise_for :users
-  get 'home/index'
   root 'home#main'
-  post '/write' => 'home#write'
-  get '/list' => 'home#list'
-  get '/show/:post_id' => 'home#show'
-  
-  get '/destroy/:post_id' => 'home#destroy'
-  
-  get '/edit/:post_id' => 'home#edit'
-  post '/update/:post_id' => 'home#update'
+  get 'deta/deta_index'
+  post '/deta_write' => 'deta#deta_write'
+  get '/deta_list' => 'deta#deta_list'
+  get '/deta_show/:post_id' => 'deta#deta_show'
+  get '/deta_edit/:post_id' => 'deta#deta_edit'
+  post '/deta_update/:post_id' => 'deta#deta_update'
+  get '/deta_destroy/:post_id' => 'deta#deta_destroy'
+ 
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

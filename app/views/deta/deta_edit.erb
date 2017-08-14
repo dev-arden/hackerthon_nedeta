@@ -1,0 +1,24 @@
+<form action = "/deta_write" method="POST">
+  <p>
+    지역: <textarea name="local" rows="1" cols="20"><%= @post.local  %></textarea>
+  </p>
+  <p>
+    날짜: <input type="date" name="date" value = "<%= @post.date %>">
+  </p>
+  <p>
+    시간: <input type="time" name="starttime"> ~ <input type="time" name="finishtime">
+  </p>
+  <p>
+    시급: <input type="text"  name="money" rows="3" cols="20" value = "<%= @post.money %>">
+  </p>  
+    경력: <input type="radio" name="work" value = "필요"> 필요
+          <input type="radio" name="work" value = "불필요"> 불필요
+  </p>
+  <p>
+    상호명: <input type="text"name="title" rows="3" cols="20" value = "<%= @post.title %>"><br>
+  </p>  
+  <p>
+    <textarea name="content" rows="10" cols="100"><%= @post.content %></textarea><br>
+  </p>
+    <button type="submit">submit</button>
+ </form>

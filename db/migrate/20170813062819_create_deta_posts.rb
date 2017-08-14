@@ -1,6 +1,6 @@
-class CreatePosts < ActiveRecord::Migration
+class CreateDetaPosts < ActiveRecord::Migration
   def change
-    create_table :posts do |t|
+    create_table :deta_posts do |t|
       t.string :local
       t.string :money
       t.string :title
@@ -8,6 +8,7 @@ class CreatePosts < ActiveRecord::Migration
       t.date :date
       t.datetime :time
       t.datetime :time2
+      t.string :work
       t.timestamps null: false
     end
   end

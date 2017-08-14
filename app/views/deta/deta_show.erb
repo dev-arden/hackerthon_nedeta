@@ -1,0 +1,28 @@
+<p>  
+  지역: <%= @post.local %><br>
+</p>
+<p>
+  날짜: <%= @post.date %><br>
+</p>
+<p>
+  시간: <%= @post.time.try(:strftime, "%p %I시 %M분")%> ~ <%= @post.time2.try(:strftime,"%p %I시 %M분")%><br>
+</p>
+<p>
+  시급: <%= @post.money %><br>
+</p>
+<p>
+  경력여부: <%= @post.work %><br>
+</p>
+<p>
+  상호명: <%= @post.title %><br>
+</p>
+<p>
+  <%= @post.content %><br>
+</p>
+<p>
+  <a href = "/deta_edit/<%= @post.id %>">수정</a>
+  <a href = "/deta_destroy/<%= @post.id %>">삭제</a><hr>
+</p>
+<p>
+  <a href="/">메인페이지로</a>
+</p>
