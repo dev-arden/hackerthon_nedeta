@@ -1,6 +1,7 @@
 class CreateDetaPosts < ActiveRecord::Migration
   def change
     create_table :deta_posts do |t|
+      t.string :type
       t.string :local
       t.string :money
       t.string :title

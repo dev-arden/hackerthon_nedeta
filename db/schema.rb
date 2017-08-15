@@ -14,6 +14,7 @@
 ActiveRecord::Schema.define(version: 20170813062819) do
 
   create_table "deta_posts", force: :cascade do |t|
+    t.string   "type"
     t.string   "local"
     t.string   "money"
     t.string   "title"

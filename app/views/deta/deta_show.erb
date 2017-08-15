@@ -17,7 +17,9 @@
   상호명: <%= @post.title %><br>
 </p>
 <p>
-  <%= @post.content %><br>
+  <fieldset>
+    <%= @post.content %><br>
+  </fieldset>
 </p>
 <p>
   <a href = "/deta_edit/<%= @post.id %>">수정</a>
