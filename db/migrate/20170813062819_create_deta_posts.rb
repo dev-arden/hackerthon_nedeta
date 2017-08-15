@@ -9,6 +9,7 @@ class CreateDetaPosts < ActiveRecord::Migration
       t.datetime :time
       t.datetime :time2
       t.string :work
+      t.integer :user_id
       t.timestamps null: false
     end
   end

@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  devise_for :users
   root 'home#main'
   get 'deta/deta_index'
   post '/deta_write' => 'deta#deta_write'
@@ -7,6 +8,8 @@ Rails.application.routes.draw do
   get '/deta_edit/:post_id' => 'deta#deta_edit'
   post '/deta_update/:post_id' => 'deta#deta_update'
   get '/deta_destroy/:post_id' => 'deta#deta_destroy'
+  
+  get '/mynote' => 'mypage#mynote'
  
 
   # The priority is based upon order of creation: first created -> highest priority.
