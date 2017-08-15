@@ -11,7 +11,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170813062819) do
+ActiveRecord::Schema.define(version: 20170814071102) do
+
+  create_table "complain_posts", force: :cascade do |t|
+    t.string   "complain_title"
+    t.text     "complain_content"
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
+  end
+
+  create_table "complain_replies", force: :cascade do |t|
+    t.text     "content"
+    t.integer  "complain_post_id"
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
+  end
 
   create_table "deta_posts", force: :cascade do |t|
     t.string   "local"

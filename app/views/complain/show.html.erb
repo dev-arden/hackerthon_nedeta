@@ -1,0 +1,28 @@
+<div class="container" style="margin-top:50px">
+  <div>
+    제목 : <%= @one_post.complain_title %><br>
+    내용 : <%= @one_post.complain_content %><br>
+
+
+    <a href = "/edit/<%= @one_post.id %>">수정</a>
+    <a href = "/destroy/<%= @one_post.id %>">삭제</a><hr>
+  </div>
+
+
+<!--댓글창-->
+
+    <form action="/reply_write" method="POST">
+      <div class="form-group">
+          <label for="comment">댓글 </label>
+          <input type="hidden" name="id_of_post" value="<%=@one_post.id%>"></input>
+          <textarea class="form-control" name="content" rows="5" id="comment" placeholder="댓글을 작성해주세요"></textarea>
+          <button type="submit" class="btn btn-default">Submit</button>
+    </form>
+      </div>
+    </form>
+    
+    <% @one_post.ComplainReplies.each do |r| %>
+      <%= r.content %>
+    <%end%>
+    
+        <a href="/">메인페이지로</a>

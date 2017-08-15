@@ -1,0 +1,19 @@
+<!-- 여기는 CSS 부분이오-->
+
+<% @posts.each do |p| %>
+<%=p.id%>
+<a href="<%="/complain/show/" + p.id.to_s %>">
+<%= p.complain_title%>
+</a>
+<br>
+<% end %>
+
+
+
+
+
+
+<hr>
+<a href='/complain/index'>
+    <button class="btn btn-default" type="submit">신고하기</button>
+</a>

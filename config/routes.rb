@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+
+
   root 'home#main'
   get 'deta/deta_index'
   post '/deta_write' => 'deta#deta_write'
@@ -7,7 +9,15 @@ Rails.application.routes.draw do
   get '/deta_edit/:post_id' => 'deta#deta_edit'
   post '/deta_update/:post_id' => 'deta#deta_update'
   get '/deta_destroy/:post_id' => 'deta#deta_destroy'
- 
+  
+  get 'complain/index'
+  get '/complain/list' => 'complain#list'
+  post '/complain/write' => 'complain#write'
+  get '/complain/show/:id' => 'complain#show'
+  get '/destroy/:id' => 'complain#destroy'
+  get '/edit/:id' => 'complain#edit'
+  post '/complain/update/:id' => 'complain#update'
+  post '/reply_write' => 'complain#reply_write'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
