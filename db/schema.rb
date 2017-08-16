@@ -11,9 +11,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170815031022) do
+ActiveRecord::Schema.define(version: 20170815063216) do
 
   create_table "deta_posts", force: :cascade do |t|
+    t.string   "type"
     t.string   "local"
     t.string   "money"
     t.string   "title"
@@ -22,7 +23,13 @@ ActiveRecord::Schema.define(version: 20170815031022) do
     t.datetime "time"
     t.datetime "time2"
     t.string   "work"
-    t.integer  "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "detareplies", force: :cascade do |t|
+    t.text     "content"
+    t.integer  "post_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
