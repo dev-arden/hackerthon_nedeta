@@ -3,7 +3,7 @@ class DetaController < ApplicationController
   end
   def deta_write
     @post = DetaPost.new
-    @post = DetaPost.create(:local => params[:local], :money => params[:money], :title => params[:title], :content => params[:content], :date => params[:date], :time => params[:starttime], :time2 => params[:finishtime], :work => params[:work])
+    @post = DetaPost.create(:local => params[:local], :money => params[:money], :title => params[:title], :content => params[:content], :date => params[:date], :time => params[:starttime], :time2 => params[:finishtime], :work => params[:work], :user_id => params[:user_id])
     @post.save
     
     redirect_to '/deta_list'
@@ -34,6 +34,7 @@ class DetaController < ApplicationController
     @post.work = params[:work]
     @post.time = params[:starttime]
     @post.time2 = params[:finishtime]
+    @post.user_id = params[:user_id]
     @post.save
     
     redirect_to '/deta_list'

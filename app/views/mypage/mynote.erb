@@ -19,7 +19,7 @@
   
   <% @post.each do |p|%>
   <tr>
-    <td><%= p.local %></td>
+    <td><%= p.local %></td> 
     <td><%= p.date %></td>
     <td><%= p.time.try(:strftime, "%p %I시 %M분") %></td>
     <td><%= p.time2.try(:strftime, "%p %I시 %M분") %></td>
