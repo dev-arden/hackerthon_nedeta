@@ -17,11 +17,20 @@
   상호명: <%= @post.title %><br>
 </p>
 <p>
-  <%= @post.content %><br>
+  <fieldset>
+    <%= @post.content %><br>
+  </fieldset>
 </p>
 <p>
   <a href = "/deta_edit/<%= @post.id %>">수정</a>
   <a href = "/deta_destroy/<%= @post.id %>">삭제</a><hr>
+</p>
+<p>
+  댓글 달기
+  <form>
+    <textarea name="detareply" rows="3" cols="60"></textarea>
+    <button></button>
+  </form>
 </p>
 <p>
   <a href="/">메인페이지로</a>

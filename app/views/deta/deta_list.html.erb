@@ -1,6 +1,24 @@
+  <p>
+    <%= form_tag(deta_list_path, :method => "get", id: "search-form") do %>
+      <%= select_tag "type", raw("<option>외식음료</option><option>문화여가</option><option>서비스</option><option>디자인</option><option>과외</option><option>미디어</option><option>기타</option>"), include_blank: "All" %>
+      <%= submit_tag "Search", :name => nil %>
+    <% end %>
+  </p>
+  <p>
+    <%= form_tag(deta_list_path, :method => "get", id: "search-form") do %>
+        <%= text_field_tag "search", params[:search], placeholder: "알바를 검색해보세용" %>
+        <%= submit_tag "Search", :name => nil %>
+    <% end %>
+  </p>
+    <% if @post.blank? %>
+      <h4><%= params[:search] %> 조건에 맞는 알바 결과를 찾지 못했습니다.</h4>
+    <% end %>
+</p>
+<hr>
 <table>
   <tr>
     <th>넘버</th>
+    <th>업종</th>
     <th>지역</th> 
     <th>날짜</th>
     <th>시작시간</th></th>
@@ -12,6 +30,7 @@
   <% @post.each do |p| %>
   <tr>
     <td><a href="/deta_show/<%= p.id %>"><%= p.id%></a></td>
+    <td class="uu"><%= p.type %></td>
     <td><%= p.local %></td>
     <td><%= p.date %></td>
     <td><%= p.time.try(:strftime, "%p %I시 %M분") %></td>
