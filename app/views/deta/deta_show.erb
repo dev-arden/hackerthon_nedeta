@@ -25,6 +25,18 @@
   <a href = "/deta_edit/<%= @post.id %>">수정</a>
   <a href = "/deta_destroy/<%= @post.id %>">삭제</a><hr>
 </p>
+
+<%=post.likes.size%>명이 좋아합니다.
+  <%if current_user.is_like?%>(post) %>
+  <form action="/deta_post/<%=post.id%>/like" method="post">
+  <button>좋아요 취소</button>
+  </form>
+<%else%>
+  <form action="/post/<%=post.id%>/like" method="post">
+  <button>좋아요</button>
+  </form>
+<%else%>
+
 <p>
   댓글 달기
   <form>

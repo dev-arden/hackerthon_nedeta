@@ -21,6 +21,8 @@ Rails.application.routes.draw do
   post '/complain/update/:id' => 'complain#update'
   post '/reply_write' => 'complain#reply_write'
   get '/mynote' => 'mypage#mynote'
+  
+  post "deta_post/:post_id/like" => "likes#like_toggle"
 
 
   # The priority is based upon order of creation: first created -> highest priority.

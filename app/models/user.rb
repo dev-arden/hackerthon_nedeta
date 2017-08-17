@@ -5,4 +5,10 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
          
   has_many :deta_posts
+  has_many :likes
+  has_many :liked_deta_posts, through: :likes, source: :post
+  
+  def is_like?(deta_post)
+    Like.find_by(user_id: self.id, post_id: post.id).present?
+  end
 end
