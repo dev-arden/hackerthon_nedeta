@@ -14,5 +14,4 @@ class User < ActiveRecord::Base
   end
 
   has_many :deta_replies
-
 end
