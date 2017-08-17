@@ -7,10 +7,10 @@ class User < ActiveRecord::Base
   has_many :deta_posts
 
   has_many :likes
-  has_many :liked_deta_posts, through: :likes, source: :post
+  has_many :liked_deta_posts, through: :likes, source: :deta_post
   
-  def is_like?(deta_post)
-    Like.find_by(user_id: self.id, post_id: post.id).present?
+  def is_like?(post)
+    Like.find_by(user_id: self.id, deta_post_id: post.id).present?
   end
 
   has_many :deta_replies
