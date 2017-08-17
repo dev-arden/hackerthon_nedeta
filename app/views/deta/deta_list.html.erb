@@ -44,8 +44,9 @@
   <% end%>
 </table>
 <hr>
-<form action="/deta/deta_index">
-    <input type="submit" value="글쓰기">
-</form>
+<% if user_signed_in? %>
+  <form action="/deta/deta_index">
+      <input type="submit" value="글쓰기">
+  </form>
 <a href="/users/sign_out">로그아웃</a>
-<a href="https://www.w3schools.com/tags/tryit.asp?filename=tryhtml_fieldset">ㄱㄱ</a>
+<% end %>

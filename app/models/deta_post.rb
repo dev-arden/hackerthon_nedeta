@@ -6,4 +6,7 @@ class DetaPost < ActiveRecord::Base
 
   belongs_to :user
   has_many :detareplies
+  
+  has_many :likes
+  has_many :liked_deta_users, through: :likes, source: :user
 end

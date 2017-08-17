@@ -19,7 +19,6 @@ class DetaController < ApplicationController
   def deta_show
     @post = DetaPost.find(params[:post_id])
   end
-
   def deta_destroy
     @post = DetaPost.find(params[:post_id])
     @post.destroy
@@ -56,11 +55,6 @@ class DetaController < ApplicationController
   def detareply_destroy
     @detareply = Detareply.find(params[:id])
     @detareply.destroy
-    
-    redirect_to :back
-  end
-  def detareply_accept
-    @detareply = Detareply.find(params[:id])
     
     redirect_to :back
   end

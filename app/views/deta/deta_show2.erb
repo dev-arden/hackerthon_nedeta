@@ -1,8 +1,7 @@
-<% if user_signed_in? %>
-  <p>  
-    현재 <%= current_user.email %> 접속중!<hr>
-  </p>
-<% end %>
+dasdfasdfasdf
+<p>  
+  현재 <%= current_user.email %> 접속중!<hr>
+</p>
 <p>  
   작성자: <%= @post.user.try(:email) %>
 </p>
@@ -37,29 +36,31 @@
   <% @post.detareplies.each do |r|%>
     작성자:
     <%= r.user.try(:email) %>
-    <%= r.content %> <p id="demo"></p><br>
+    <%= r.content %><br>
     <% if current_user.try(:email)  == @post.user.try(:email)  %>
-      <button onclick="getElementById('demo').innerHTML=Date()">수락</button>
+      <form action="/deta_show2/<%= @post.id %>">
+        <input type="submit" value="연락중">
+      </form><br>
       <form action="/detareplydestroy/<%= r.id %>">
         <input type="submit" value="삭제">
       </form><br>
     <% end %>
+    Field2: <input type="text" id="field2">
   <% end %>
 </p>
-  <%=@post.likes.size%>명이 좋아합니다.
-  <% if user_signed_in? %>
-    <%if current_user.is_like?(@post) %>
-    <form action="/deta_post/<%=@post.id%>/like" method="post">
-    <button>좋아요 취소</button>
-    </form>
-  <%else%>
-    <form action="/deta_post/<%=@post.id%>/like" method="post">
-    <button>좋아요</button>
-    </form>
-  <%end%>
-<% end %>
+
+<%=@post.likes.size%>명이 좋아합니다.
+  <%if current_user.is_like?(@post) %>
+  <form action="/deta_post/<%=@post.id%>/like" method="post">
+  <button>좋아요 취소</button>
+  </form>
+<%else%>
+  <form action="/deta_post/<%=@post.id%>/like" method="post">
+  <button>좋아요</button>
+  </form>
+<%end%>
+
 <p>
-  <% if user_signed_in? %>
     <% unless current_user.try(:email)  == @post.user.try(:email)  %>
       한 줄 이력서
       <form action="/detareplywrite" method="POST">
@@ -69,15 +70,9 @@
         <button type="submit">신청합니다.</button>
       </form>
     <% end %>
-  <% end %>
 </p>
 
 <p>
   <a href="/">메인페이지로</a>
 </p>
-<% if user_signed_in? %>
-  <a href="/users/sign_out">로그아웃</a>
-<% end %>
-<button onclick="getElementById('demo').innerHTML=Date()">What is the time?</button>
-
-<p id="demo"></p>
+<a href="/users/sign_out">로그아웃</a>
