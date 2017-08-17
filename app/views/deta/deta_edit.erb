@@ -1,4 +1,4 @@
-<form action = "/deta_write" method="POST">
+<form action = "/deta_update/<%= @post.id %>" method="POST">
   <p>
     지역: <textarea name="local" rows="1" cols="20"><%= @post.local  %></textarea>
   </p>

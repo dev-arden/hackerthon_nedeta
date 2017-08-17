@@ -28,6 +28,8 @@ ActiveRecord::Schema.define(version: 20170815063216) do
   end
 
   create_table "deta_posts", force: :cascade do |t|
+    t.integer  "user_id"
+    t.string   "type"
     t.string   "local"
     t.string   "money"
     t.string   "title"
@@ -41,10 +43,11 @@ ActiveRecord::Schema.define(version: 20170815063216) do
   end
 
   create_table "detareplies", force: :cascade do |t|
+    t.integer  "user_id"
     t.text     "content"
-    t.integer  "post_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.integer  "deta_post_id"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
   end
 
   create_table "users", force: :cascade do |t|

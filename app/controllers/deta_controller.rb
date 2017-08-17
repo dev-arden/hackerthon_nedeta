@@ -3,11 +3,7 @@ class DetaController < ApplicationController
   end
   def deta_write
     @post = DetaPost.new
-<<<<<<< HEAD
-    @post = DetaPost.create(:local => params[:local], :money => params[:money], :title => params[:title], :content => params[:content], :date => params[:date], :time => params[:starttime], :time2 => params[:finishtime], :work => params[:work], :user_id => params[:user_id])
-=======
-    @post = DetaPost.create(:type => params[:type], :local => params[:local], :money => params[:money], :title => params[:title], :content => params[:content], :date => params[:date], :time => params[:starttime], :time2 => params[:finishtime], :work => params[:work])
->>>>>>> b4962d2c825758f3d297edd161608c7ca2f6eed6
+    @post = DetaPost.create(:type => params[:type], :local => params[:local], :money => params[:money], :title => params[:title], :content => params[:content], :date => params[:date], :time => params[:starttime], :time2 => params[:finishtime], :work => params[:work], :user_id => params[:user])
     @post.save
     
     redirect_to '/deta_list'
@@ -44,9 +40,28 @@ class DetaController < ApplicationController
     @post.work = params[:work]
     @post.time = params[:starttime]
     @post.time2 = params[:finishtime]
-    @post.user_id = params[:user_id]
     @post.save
     
     redirect_to '/deta_list'
+  end
+  def detareply_write
+    @detareply = Detareply.new
+    @detareply.user_id = params[:user]
+    @detareply.content = params[:detacontent]
+    @detareply.deta_post_id = params[:post_id]
+    @detareply.save
+    
+    redirect_to :back 
+  end
+  def detareply_destroy
+    @detareply = Detareply.find(params[:id])
+    @detareply.destroy
+    
+    redirect_to :back
+  end
+  def detareply_accept
+    @detareply = Detareply.find(params[:id])
+    
+    redirect_to :back
   end
 end

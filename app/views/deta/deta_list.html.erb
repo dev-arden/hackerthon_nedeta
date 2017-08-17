@@ -26,6 +26,7 @@
     <th>시급</th>
     <th>경력여부</th>
     <th>상호명</th>
+    <th>작성자</th>
   </tr>
   <% @post.each do |p| %>
   <tr>
@@ -38,6 +39,7 @@
     <td><%= p.money %></td>
     <td><%= p.work %></td>
     <td><%= p.title %></td>
+    <td><%= p.user.try(:email) %></td>
   </tr>
   <% end%>
 </table>
@@ -45,3 +47,4 @@
 <form action="/deta/deta_index">
     <input type="submit" value="글쓰기">
 </form>
+<a href="/users/sign_out">로그아웃</a>
