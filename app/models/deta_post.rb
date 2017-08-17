@@ -9,4 +9,6 @@ class DetaPost < ActiveRecord::Base
   
   has_many :likes
   has_many :liked_deta_users, through: :likes, source: :user
+  
+  
 end

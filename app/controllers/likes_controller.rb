@@ -13,6 +13,16 @@ class LikesController < ApplicationController
     
     end
     
+  def show
+    @post = DetaPost.all.order("created_at DESC")
+    if params[:search]
+      @post = DetaPost.search(params[:search]).order("created_at DESC")
+    else
+      @post = DetaPost.all.order("created_at DESC")
+    end
     
-    
+     @all_posts = DetaPost.all
+  end
+
+
 end

@@ -1,0 +1,30 @@
+<table>
+  <tr>
+    <th>넘버</th>
+    <th>업종</th>
+    <th>지역</th> 
+    <th>날짜</th>
+    <th>시작시간</th></th>
+    <th>종료시간</th>
+    <th>시급</th>
+    <th>경력여부</th>
+    <th>상호명</th>
+    <th>작성자</th>
+  </tr>
+  <% @post.each do |p| %>
+   <%if(current_user.is_like?(p))%>
+      <tr>
+        <td><a href="/deta_show/<%= p.id %>"><%= p.id%></a></td>
+        <td class="uu"><%= p.type %></td>
+        <td><%= p.local %></td>
+        <td><%= p.date %></td>
+        <td><%= p.time.try(:strftime, "%p %I시 %M분") %></td>
+        <td><%= p.time2.try(:strftime, "%p %I시 %M분") %></td>
+        <td><%= p.money %></td>
+        <td><%= p.work %></td>
+        <td><%= p.title %></td>
+        <td><%= p.user.try(:email) %></td>
+      </tr>
+    <%end%>
+  <% end%>
+</table>

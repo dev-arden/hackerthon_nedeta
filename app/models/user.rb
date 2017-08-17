@@ -12,4 +12,7 @@ class User < ActiveRecord::Base
   def is_like?(post)
     Like.find_by(user_id: self.id, deta_post_id: post.id).present?
   end
+
+
+  has_many :deta_replies
 end
