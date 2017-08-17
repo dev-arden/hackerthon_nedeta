@@ -31,7 +31,7 @@
   <% @post.each do |p| %>
   <tr>
     <td><a href="/deta_show/<%= p.id %>"><%= p.id%></a></td>
-    <td class="uu"><%= p.type %></td>
+    <td><%= p.type %></td>
     <td><%= p.local %></td>
     <td><%= p.date %></td>
     <td><%= p.time.try(:strftime, "%p %I시 %M분") %></td>

@@ -2,7 +2,7 @@
   현재 <%= current_user.email %> 접속중!<hr>
 </p>
 <p>  
-  작성자: <%= @post.user.try(:email) %><br>
+  작성자: <%= @post.user.try(:email) %>
 </p>
 <p>  
   지역: <%= @post.local %><br>
@@ -35,7 +35,7 @@
     작성자:
     <%= r.user.try(:email) %>
     <%= r.content %><br>
-    <% if current_user.email == @post.user.email %>
+    <% if current_user.try(:email)  == @post.user.try(:email)  %>
       <form action="/detareplyaccept/<%= r.id %>">
         <input type="submit" value="수락">
       </form>
@@ -47,7 +47,7 @@
 </p>
 
 <p>
-    <% unless current_user.try(:email) == @post.user.try(:email) %>
+    <% unless current_user.try(:email)  == @post.user.try(:email)  %>
       한 줄 이력서
       <form action="/detareplywrite" method="POST">
         <input type = "hidden" name="user" value="<%= current_user.id %>">
