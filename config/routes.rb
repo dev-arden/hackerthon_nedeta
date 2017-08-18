@@ -29,7 +29,26 @@ Rails.application.routes.draw do
 
   get 'likes/show'
 
-
+  get '/index' => 'home#main'
+  get '/sabaksa' => 'home#sabaksa'
+  get '/bloghomeone' => 'home#bloghomeone'
+  get '/bloghometwo' => 'home#bloghometwo'
+  get '/blogpost' => 'home#blogpost'
+  get '/contact' => 'home#contact'
+  get '/faq' => 'home#faq'
+  get '/fullwidth' => 'home#fullwidth'
+  get '/portfolioonecol' => 'home#portfolioonecol'
+  get '/portfoliotwocol' => 'home#portfoliotwocol'
+  get '/portfoliothreecol' => 'home#portfoliothreecol'
+  get '/portfoliofourcol' => 'home#portfoliofourcol'
+  get '/portfolioitem' => 'home#portfolioitem'
+  get '/pricing' => 'home#pricing'
+  get '/services' => 'home#services'
+  get '/sidebar' => 'home#sidebar'
+  get '/about' => 'home#about'
+  
+  
+  
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

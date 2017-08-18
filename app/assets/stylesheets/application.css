@@ -10,6 +10,23 @@
  * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
  * file per style scope.
  *
+*= require bootstrap.min.css
+ *= require bootstrap-grid.min.css
+ *= require bootstrap-reboot.min.css
  *= require_tree .
  *= require_self
  */
+
+table, td, th {    
+    border: 1px solid #ddd;
+    text-align: left;
+}
+
+table {
+    border-collapse: collapse;
+    width :100%;
+}
+
+th, td {
+    padding: 15px;
+}

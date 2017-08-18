@@ -1,17 +1,16 @@
 <!-- 여기는 CSS 부분이오-->
-
-<% @posts.each do |p| %>
-<%=p.id%>
-<a href="<%="/complain/show/" + p.id.to_s %>">
-<%= p.complain_title%>
-</a>
-<br>
-<% end %>
-
-
-
-
-
+<table>
+  <tr>
+    <th>넘버</th>
+    <th>제목</th>
+  </tr>
+  <% @posts.each do |p| %>
+  <tr>
+    <td><%=p.id%></td>
+    <td><a href="<%="/complain/show/" + p.id.to_s %>"><%= p.complain_title%></a></td>
+  </tr>
+  <% end %>
+</table>
 
 <hr>
 <a href='/complain/index'>

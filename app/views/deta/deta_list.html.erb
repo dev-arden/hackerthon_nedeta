@@ -1,11 +1,6 @@
+
   <p>
-    <%= form_tag(deta_list_path, :method => "get", id: "search-form") do %>
-      <%= select_tag "type", raw("<option>외식음료</option><option>문화여가</option><option>서비스</option><option>디자인</option><option>과외</option><option>미디어</option><option>기타</option>"), include_blank: "All" %>
-      <%= submit_tag "Search", :name => nil %>
-    <% end %>
-  </p>
-  <p>
-    <%= form_tag(deta_list_path, :method => "get", id: "search-form") do %>
+    <%= form_tag(deta_list_path, :method => "get", id: "search-form", :class => 'searchf') do %>
         <%= text_field_tag "search", params[:search], placeholder: "알바를 검색해보세용" %>
         <%= submit_tag "Search", :name => nil %>
     <% end %>
@@ -14,39 +9,41 @@
       <h4><%= params[:search] %> 조건에 맞는 알바 결과를 찾지 못했습니다.</h4>
     <% end %>
 </p>
-<hr>
-<table>
-  <tr>
-    <th>넘버</th>
-    <th>업종</th>
-    <th>지역</th> 
-    <th>날짜</th>
-    <th>시작시간</th></th>
-    <th>종료시간</th>
-    <th>시급</th>
-    <th>경력여부</th>
-    <th>상호명</th>
-    <th>작성자</th>
-  </tr>
-  <% @post.each do |p| %>
-  <tr>
-    <td><a href="/deta_show/<%= p.id %>"><%= p.id%></a></td>
-    <td><%= p.type %></td>
-    <td><%= p.local %></td>
-    <td><%= p.date %></td>
-    <td><%= p.time.try(:strftime, "%p %I시 %M분") %></td>
-    <td><%= p.time2.try(:strftime, "%p %I시 %M분") %></td>
-    <td><%= p.money %></td>
-    <td><%= p.work %></td>
-    <td><%= p.title %></td>
-    <td><%= p.user.try(:email) %></td>
-  </tr>
-  <% end%>
-</table>
-<hr>
+<p>
+  <table>
+    <tr>
+      <th>넘버</th>
+      <th>업종</th>
+      <th>지역</th> 
+      <th>날짜</th>
+      <th>시작시간</th></th>
+      <th>종료시간</th>
+      <th>시급</th>
+      <th>경력여부</th>
+      <th>상호명</th>
+      <th>작성자</th>
+    </tr>
+    <% @post.each do |p| %>
+    <tr>
+      <td><a href="/deta_show/<%= p.id %>"><%= p.id%></a></td>
+      <td><%= p.type %></td>
+      <td><%= p.local %></td>
+      <td><%= p.date %></td>
+      <td><%= p.time.try(:strftime, "%p %I시 %M분") %></td>
+      <td><%= p.time2.try(:strftime, "%p %I시 %M분") %></td>
+      <td><%= p.money %></td>
+      <td><%= p.work %></td>
+      <td><%= p.title %></td>
+      <td><%= p.user.try(:email) %></td>
+    </tr>
+    <% end%>
+  </table>
+</p>
+
 <% if user_signed_in? %>
-  <form action="/deta/deta_index">
-      <input type="submit" value="글쓰기">
-  </form>
-<a href="/users/sign_out">로그아웃</a>
+    <p>
+      <form action="/deta/deta_index" class="writew">
+        <input type="submit" value="글쓰기">
+      </form>
+    </p>
 <% end %>
