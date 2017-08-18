@@ -1,6 +1,14 @@
 Rails.application.routes.draw do
   devise_for :users
   root 'home#main'
+  
+  resources :conversations, only: [:create] do
+    member do
+      post :close
+    end
+
+    resources :messages, only: [:create]
+  end
   get 'deta/deta_index'
   post '/deta_write' => 'deta#deta_write'
   get '/deta_list' => 'deta#deta_list'
@@ -28,6 +36,8 @@ Rails.application.routes.draw do
   get '/mynote' => 'mypage#mynote'
 
   get 'likes/show'
+  get '/mypage/mbox'
+  post 'conversations/:create', to: 'conversations#:create', :defaults => { :format => 'js' }
 
   get '/index' => 'home#main'
   get '/sabaksa' => 'home#sabaksa'

@@ -1,0 +1,176 @@
+<head>
+  <style type="text/css">
+
+    *{
+    box-sizing: border-box;
+}
+ul {
+  padding-left: 0px;
+  list-style: none;
+}
+
+.messages-list {
+  max-height: 200px;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.message-sent {
+  position: relative;
+  background-color: #D9EDF7;
+  border-color: #BCE8F1;
+  margin: 5px 20px;
+  padding: 10px;
+  float: right;
+}
+
+.message-received {
+  background-color: #F1F0F0;
+  border-color: #EEEEEE;
+  margin: 5px 20px;
+  padding: 10px;
+  float: left;
+}
+
+.col-md-2, .col-md-10{
+    padding:0;
+}
+.panel{
+    margin-bottom: 0px;
+}
+.chat-window{
+    position : fixed;
+    bottom: 0px;
+    right: 10px;
+    float:right;
+    margin-left:10px;
+}
+.chat-window > div > .panel{
+    border-radius: 5px 5px 0 0;
+}
+.icon_minim{
+    padding:2px 10px;
+}
+.msg_container_base{
+  background: #e5e5e5;
+  margin: 0;
+  padding: 0 10px 10px;
+  max-height:300px;
+  overflow-x:hidden;
+}
+.top-bar {
+  background: #ddd;
+  color: black;
+  padding: 10px;
+  position: relative;
+  overflow: hidden;
+}
+.msg_receive{
+    margin-left:0;
+    font-size: 13px;
+}
+.msg_sent{
+    margin-right:0;
+    font-size: 13px;
+}
+.messages {
+  background: white;
+  padding: 10px;
+  border-radius: 2px;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+  max-width:100%;
+}
+.messages > p {
+    font-size: 13px;
+    margin: 0 0 0.2rem 0;
+  }
+.messages_time {
+    font-size: 11px;
+    color: #ccc;
+}
+.msg_container {
+    padding: 10px;
+    overflow: hidden;
+    display: flex;
+}
+
+.base_sent {
+  justify-content: flex-end;
+  align-items: flex-end;
+}
+
+.msg_sent > time{
+    float: right;
+}
+
+.msg_container_base::-webkit-scrollbar-track
+{
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+    background-color: #F5F5F5;
+}
+
+.msg_container_base::-webkit-scrollbar
+{
+    width: 12px;
+    background-color: #F5F5F5;
+}
+
+.msg_container_base::-webkit-scrollbar-thumb
+{
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+    background-color: #555;
+}
+
+  </style>
+</head>
+  <!--=====heading=====-->
+  <div class="row">
+    <div class="col-12 col-md-10 offset-md-1 col-lg-8 offset-lg-2 d-flex flex-column mb-3">
+      <h3 style="margin-top: 50px;">메세지</h3>
+    </div>
+  </div>
+  <hr style="margin-top: -5px;">
+  <a href="" class="typewrite" data-period="2000" data-type='[ "알바 대타 구하고 싶을 땐?","너 내 대타가 돼라" ]'>
+    <span class="wrap"></span>
+  </a>
+</h1>
+<div class="row">
+  <div class="col-md-9">
+    <ul id="conversations-list">
+      <% @conversations.each do |conversation| %>
+        <%= render 'conversations/conversation', conversation: conversation, user: current_user %>
+      <% end %>
+    </ul>
+  </div>
+
+  <div class="col-md-3">
+    <div class="panel panel-primary">
+      <div class="panel-heading">
+        <h3 class="panel-title">User list</h3>
+      </div>
+      <div class="panel-body">
+        <ul>
+          <% @users.each do |user| %>
+             <li><%= button_to user.email, conversations_path(user_id: user), remote: true, method: :post%></li>
+            <li><%= link_to user.email, conversations_path(user_id: user), remote: true, method: :post, class: "new_chat"%></li>
+          <% end %>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+  
+  <div class="row">
+    <div class="col-12 col-md-10 offset-md-1 col-lg-8 offset-lg-2 d-flex flex-column mb-3">
+      <h5 style="margin-top: 50px;">최근 메세지</h5>
+    </div>
+  </div>
+
+  <% @my_real_channels.uniq.sort.each do |real_channel_id| %>
+      <% @my_real_channel = Conversation.find_by_id("#{real_channel_id}") %>
+      <div style="border: 1px solid black; border-radius: 2px">
+      <%= link_to @my_real_channel.opposed_user(current_user).email, conversations_path(user_id: @my_real_channel.opposed_user(current_user)), remote: true, method: :post, class: "addClass"%>님과의 대화: 
+      <%= @my_real_channel.messages.last.body%>
+      <%= @my_real_channel.messages.last.created_at.in_time_zone("Seoul").strftime("%Y.%m.%d")%>
+      </div>
+  <% end %>
