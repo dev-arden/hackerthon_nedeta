@@ -3,6 +3,7 @@
 </div>
 
 <div class="row">
+  <br>
   <p>
     <%= form_tag(deta_list_path, :method => "get", id: "search-form", :class => 'searchf') do %>
         <%= text_field_tag "search", params[:search], placeholder: "알바를 검색해보세용" %>

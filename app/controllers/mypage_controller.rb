@@ -1,8 +1,11 @@
 class MypageController < ApplicationController
     
     def mynote
-        @post = DetaPost.all
-    end 
+       
+    end
+    def mynotetwo
+         @post = DetaPost.all
+    end
     
     def scrap
         
