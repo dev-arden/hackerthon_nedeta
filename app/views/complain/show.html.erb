@@ -1,13 +1,15 @@
-<div class="container" style="margin-top:50px">
-  <div>
-    제목 : <%= @one_post.complain_title %><br>
-    내용 : <%= @one_post.complain_content %><br>
-
-
+<div class="container">
+  <div class="form-group">
+    <div class="form-control">
+      <h3>신고합니다.</h3>
+      제목 : <%= @one_post.complain_title %><br>
+      내용 : <%= @one_post.complain_content %><br>
     <a href = "/edit/<%= @one_post.id %>">수정</a>
     <a href = "/destroy/<%= @one_post.id %>">삭제</a><hr>
+    </div>
   </div>
-
+</div
+>
 
 <!--댓글창-->
 

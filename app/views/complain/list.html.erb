@@ -1,18 +1,27 @@
-<!-- 여기는 CSS 부분이오-->
-<table>
-  <tr>
-    <th>넘버</th>
-    <th>제목</th>
-  </tr>
-  <% @posts.each do |p| %>
-  <tr>
-    <td><%=p.id%></td>
-    <td><a href="<%="/complain/show/" + p.id.to_s %>"><%= p.complain_title%></a></td>
-  </tr>
-  <% end %>
-</table>
+<div class="row">
+  <img src="3.png"></img>
+  <%= image_tag("3.png")%>
+</div>
 
-<hr>
-<a href='/complain/index'>
-    <button class="btn btn-default" type="submit">신고하기</button>
-</a>
+<div class="container">
+  <table>
+    <tr>
+      <th>넘버</th>
+      <th>제목</th>
+    </tr>
+    <% @posts.each do |p| %>
+    <tr>
+      <td><%= p.id %></td>
+      <td><a href="<%="/complain/show/" + p.id.to_s %>"><%= p.complain_title%></a></td>
+    </tr>
+    <% end %>
+  </table>
+
+ <% if user_signed_in? %>
+    <p>
+      <form action="/complain/index">
+        <input type="submit" value="신고하기">
+      </form>
+    </p>
+<% end %>
+</div>

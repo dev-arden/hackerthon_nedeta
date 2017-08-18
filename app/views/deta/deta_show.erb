@@ -1,71 +1,87 @@
-<% if user_signed_in? %>
-  <div class="container">
-    <p>  
-      현재 <%= current_user.email %> 접속중!<hr>
-    </p>
-  </div>
-<% end %>
 <div class="container">
-  <p>  
-    작성자: <%= @post.user.try(:email) %>
-  </p>
-  <p>  
-    지역: <%= @post.local %><br>
-  </p>
-  <p>
-    날짜: <%= @post.date %><br>
-  </p>
-  <p>
-    시간: <%= @post.time.try(:strftime, "%p %I시 %M분")%> ~ <%= @post.time2.try(:strftime,"%p %I시 %M분")%><br>
-  </p>
-  <p>
-    시급: <%= @post.money %><br>
-  </p>
-  <p>
-    경력여부: <%= @post.work %><br>
-  </p>
-  <p>
-    상호명: <%= @post.title %><br>
-  </p>
-  <p>
-    세부사항: <%= @post.content %><hr>
-  </p>
-  <p>
-    <% if current_user.try(:email)  == @post.user.try(:email)  %>
-        <a href = "/deta_edit/<%= @post.id %>">수정</a>
-        <a href = "/deta_destroy/<%= @post.id %>">삭제</a><hr>
-    <% end %>  
-  </p>
+      <div class="row">
+        <div class="col">
+          <% if user_signed_in? %>
+            <h5>현재 <%= current_user.email %> 접속중!</h5>
+          <% end %> 
+        </div>
+      </div>
+        <div class="row">
+          <div class="col">
+          <%=@post.likes.size%>명이 스크랩합니다.
+          <% if user_signed_in? %>
+            <%if current_user.is_like?(@post) %>
+              <form action="/deta_post/<%=@post.id%>/like" method="post" class="scrap">
+                <button>스크랩 취소</button>
+              </form>
+            <%else%>
+              <form action="/deta_post/<%=@post.id%>/like" method="post" class="scrap">
+                <button>스크랩하기</button>
+              </form>
+            <%end%>
+          <% end %>
+          </div>
+        </div>
+</div>
+
+      
+ 
+<div class="container">
+  <div class="form-group">
+    <div class="form-control">
+      <h3>너가 원하는 정보</h3>
+      <p>  
+        작성자: <%= @post.user.try(:email) %>
+      </p>
+      <p>  
+        지역: <%= @post.local %><br>
+      </p>
+      <p>
+        날짜: <%= @post.date %><br>
+      </p>
+      <p>
+        시간: <%= @post.time.try(:strftime, "%p %I시 %M분")%> ~ <%= @post.time2.try(:strftime,"%p %I시 %M분")%><br>
+      </p>
+      <p>
+        시급: <%= @post.money %><br>
+      </p>
+      <p>
+        경력여부: <%= @post.work %><br>
+      </p>
+      <p>
+        상호명: <%= @post.title %><br>
+      </p>
+      <p>
+        세부사항: <%= @post.content %><br>
+      </p>
+       <% if current_user.try(:email)  == @post.user.try(:email)  %>
+              <a href = "/deta_edit/<%= @post.id %>">수정</a>
+              <a href = "/deta_destroy/<%= @post.id %>">삭제</a>
+      <% end %>
+    </div>
+  </div>
 </div>
 <div class="container">
-  <p>
-    <% @post.detareplies.each do |r|%>
-      작성자:
-      <%= r.user.try(:email) %>
-      <%= r.content %> 
-      <% if current_user.try(:email)  == @post.user.try(:email)  %>
-        <a href="/detareplydestroy/<%= r.id %>">삭제</a><br>
-      <% end %>
-    <% end %>
-  </p>
-    <%=@post.likes.size%>명이 좋아합니다.
-    <% if user_signed_in? %>
-      <%if current_user.is_like?(@post) %>
-      <form action="/deta_post/<%=@post.id%>/like" method="post">
-      <button>좋아요 취소</button>
-      </form>
-    <%else%>
-      <form action="/deta_post/<%=@post.id%>/like" method="post">
-      <button>좋아요</button>
-      </form>
-    <%end%>
-  <% end %>
+   <div class="form-group">
+    <div class="form-control">
+      <h3>한줄이력서</h3>
+      <p>
+        <% @post.detareplies.each do |r|%>
+          작성자:
+          <%= r.user.try(:email) %>
+          <%= r.content %> 
+          <% if current_user.try(:email)  == @post.user.try(:email)  %>
+            <a href="/detareplydestroy/<%= r.id %>">삭제</a><br>
+          <% end %>
+        <% end %>
+      </p>
+    </div>
+  </div>
 </div>
 <div class="container">
   <p>
     <% if user_signed_in? %>
       <% unless current_user.try(:email)  == @post.user.try(:email)  %>
-        한 줄 이력서
         <form action="/detareplywrite" method="POST">
           <input type = "hidden" name="user" value="<%= current_user.id %>">
           <input type="hidden" name="post_id" value="<%= @post.id %>">

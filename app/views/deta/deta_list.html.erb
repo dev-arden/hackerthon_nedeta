@@ -1,4 +1,8 @@
+<div class="row">
+   <img src="2.png"></img>
+</div>
 
+<div class="row">
   <p>
     <%= form_tag(deta_list_path, :method => "get", id: "search-form", :class => 'searchf') do %>
         <%= text_field_tag "search", params[:search], placeholder: "알바를 검색해보세용" %>
@@ -8,7 +12,8 @@
     <% if @post.blank? %>
       <h4><%= params[:search] %> 조건에 맞는 알바 결과를 찾지 못했습니다.</h4>
     <% end %>
-</p>
+</div>
+<div>
 <p>
   <table>
     <tr>
@@ -47,3 +52,4 @@
       </form>
     </p>
 <% end %>
+</div>
