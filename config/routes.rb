@@ -26,6 +26,7 @@ Rails.application.routes.draw do
   post '/complain/update/:id' => 'complain#update'
   post '/reply_write' => 'complain#reply_write'
   get '/mynote' => 'mypage#mynote'
+   get '/mynotetwo' => 'mypage#mynotetwo'
 
   get 'likes/show'
 
